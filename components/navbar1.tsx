@@ -33,8 +33,11 @@ const Navbar = ({
   ],
   className,
 }: NavbarProps) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
     e.preventDefault();
@@ -45,11 +48,14 @@ const Navbar = ({
     }
   };
 
-
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.toggle("dark");
+    if (theme === "dark") {
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
+    } else {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    }
   };
 
   return (
@@ -90,7 +96,7 @@ const Navbar = ({
               className="rounded-full"
               aria-label="Toggle theme"
             >
-              {theme === "light" ? <Moon className="size-5" /> : <Sun className="size-5" />}
+              {theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </Button>
           </div>
         </nav>
@@ -114,7 +120,7 @@ const Navbar = ({
               onClick={toggleTheme} 
               className="rounded-full"
             >
-              {theme === "light" ? <Moon className="size-4" /> : <Sun className="size-4" />}
+              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </Button>
 
             {/* Mobile Sheet Trigger */}
