@@ -1,6 +1,8 @@
 "use client";
 
 import App from "@/components/logo";
+import SkillsShowcase from "@/components/TecnicalSkill";
+import SkillsMetrics from "@/components/TecnicalSkill";
 import { motion } from "framer-motion";
 
 export default function Skills() {
@@ -53,6 +55,11 @@ export default function Skills() {
       </motion.div>
      </div>
       
+  <div>
+    <SkillsShowcase></SkillsShowcase>
+  </div>
+
+
     </section>
   );
 }
