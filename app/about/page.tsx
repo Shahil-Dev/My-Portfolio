@@ -49,58 +49,26 @@ export default function About() {
           </div>
 
           <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-base md:text-md leading-relaxed font-normal">
-            <p>
-              My path into{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                web development
-              </span>{" "}
-              is shaped by logic and system building. Coming from a{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                Business Administration (BBA) background
-              </span>
-              , I built my core skills through{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                Programming Hero
-              </span>
-              . Having spent a significant amount of time focusing on this
-              craft, I have developed a deep, long-term commitment to the web
-              ecosystem.
-            </p>
+  <p>
+    My path into <span className="font-semibold text-zinc-900 dark:text-zinc-100">web development</span> is shaped by logic and system building. 
+    Coming from a <span className="font-semibold text-zinc-900 dark:text-zinc-100">Business Administration (BBA) background</span>, 
+    I built my core skills through <span className="font-semibold text-zinc-900 dark:text-zinc-100">Programming Hero</span>. 
+    Having spent a significant amount of time focusing on this craft, I have developed a deep, long-term commitment to the web ecosystem.
+  </p>
 
-            <p>
-              While I prioritize building practical, production-ready
-              applications over competitive problem-solving, my true strength
-              lies in{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-blue-500">
-                structuring clean backend operations and databases
-              </span>
-              . My development approach revolves around writing{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                clean code
-              </span>
-              , improving{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                application performance
-              </span>
-              , and ensuring a seamless{" "}
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                user experience
-              </span>
-              .
-            </p>
+  <p>
+    While I prioritize building practical, production-ready applications over competitive problem-solving, 
+    my true strength lies in <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-blue-500">structuring clean backend operations and databases</span>. 
+    My development approach revolves around writing <span className="font-semibold text-zinc-900 dark:text-zinc-100">clean code</span>, 
+    improving <span className="font-semibold text-zinc-900 dark:text-zinc-100">application performance</span>, and ensuring a seamless <span className="font-semibold text-zinc-900 dark:text-zinc-100">user experience</span>.
+  </p>
 
-            <p>
-              Beyond writing code, I focus heavily on collaboration and
-              community dynamics. I have successfully
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                {" "}
-                led and managed community organizations
-              </span>
-              , which helped me sharpen my communication, take responsibility,
-              and bring teamwork and real-world empathy into my development
-              projects.
-            </p>
-          </div>
+  <p>
+    Beyond writing code, I focus heavily on collaboration and community dynamics. I have successfully 
+    <span className="font-semibold text-zinc-900 dark:text-zinc-100"> led and managed community organizations</span>, 
+    which helped me sharpen my communication, take responsibility, and bring teamwork and real-world empathy into my development projects.
+  </p>
+</div>
 
           <div className="space-y-4">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
@@ -124,7 +92,7 @@ export default function About() {
           <img
             src="/image/my profile.jpeg"
             alt="Yemtehan Shahil - Profile"
-            className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-115 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
+            className="absolute inset-0 h-full w-full object-cover object-center "
           />
         </div>
       </div>
