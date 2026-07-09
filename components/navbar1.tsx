@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 
 interface MenuItem {
   title: string;
-  url: string; 
+  url: string;
 }
 
 interface NavbarProps {
@@ -26,10 +26,10 @@ interface NavbarProps {
 const Navbar = ({
   name = "Yemtehan Shahil",
   menu = [
-    { title: "Home", url: "#home" },
-    { title: "About", url: "#about" },
-    { title: "Projects", url: "#projects" },
-    { title: "Contact", url: "#contact" },
+    { title: "Home", url: "/home" },
+    { title: "About", url: "/about" },
+    { title: "Projects", url: "/projects" },
+    { title: "Contact", url: "/contact" },
   ],
   className,
 }: NavbarProps) => {
@@ -39,7 +39,10 @@ const Navbar = ({
     document.documentElement.classList.add("dark");
   }, []);
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    url: string,
+  ) => {
     e.preventDefault();
     const targetId = url.replace("#", "");
     const element = document.getElementById(targetId);
@@ -61,12 +64,11 @@ const Navbar = ({
   return (
     <section className={cn("fixed top-4 left-0 right-0 z-50 px-4", className)}>
       <div className="max-w-6xl mx-auto bg-background/80 backdrop-blur-md border rounded-full px-6 py-3 shadow-sm">
-        
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           {/* Brand Name */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => handleScroll(e, "#home")}
             className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
@@ -89,14 +91,18 @@ const Navbar = ({
 
           {/* Right Side: Theme Toggle */}
           <div className="flex items-center">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleTheme} 
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
               className="rounded-full"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+              {theme === "dark" ? (
+                <Sun className="size-5" />
+              ) : (
+                <Moon className="size-5" />
+              )}
             </Button>
           </div>
         </nav>
@@ -104,23 +110,27 @@ const Navbar = ({
         {/* Mobile Menu */}
         <div className="flex items-center justify-between lg:hidden">
           {/* Brand Name */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => handleScroll(e, "#home")}
             className="text-md font-bold tracking-tight"
           >
             {name}
           </a>
-          
+
           <div className="flex items-center gap-2">
             {/* Theme Toggle for Mobile */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleTheme} 
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
               className="rounded-full"
             >
-              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+              {theme === "dark" ? (
+                <Sun className="size-4" />
+              ) : (
+                <Moon className="size-4" />
+              )}
             </Button>
 
             {/* Mobile Sheet Trigger */}
@@ -150,7 +160,6 @@ const Navbar = ({
             </Sheet>
           </div>
         </div>
-
       </div>
     </section>
   );
