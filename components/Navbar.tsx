@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,6 @@ interface MenuItem {
   title: string;
   url: string;
 }
-
 interface NavbarProps {
   className?: string;
   name?: string;
@@ -26,29 +26,55 @@ interface NavbarProps {
 const Navbar = ({
   name = "Yemtehan Shahil",
   menu = [
-    { title: "Home", url: "/home" },
-    { title: "About", url: "/about" },
-    { title: "Projects", url: "/projects" },
-    { title: "Contact", url: "/contact" },
+    { title: "Home", url: "/#home" },
+    { title: "About", url: "/#about" },
+    { title: "Skills", url: "/#skills" },
+    { title: "Projects", url: "/#projects" },
+    { title: "Contact", url: "/#contact" },
   ],
   className,
 }: NavbarProps) => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
   }, []);
+
+  // সেকশনে স্মুথ স্ক্রল (Home হলে একদম উপরে)
+  const scrollToSection = (url: string): boolean => {
+    const targetId = url.split("#")[1];
+    if (!targetId) return false;
+
+    if (targetId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return true;
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false; // সেকশন এখনো বানানো হয়নি
+  };
 
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement>,
     url: string,
   ) => {
     e.preventDefault();
-    const targetId = url.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    scrollToSection(url);
+  };
+
+  // মোবাইল মেনুতে: আগে Sheet বন্ধ করো, তারপর স্ক্রল
+  const handleMobileScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    url: string,
+  ) => {
+    e.preventDefault();
+    setOpen(false);
+    setTimeout(() => scrollToSection(url), 250);
   };
 
   const toggleTheme = () => {
@@ -67,28 +93,26 @@ const Navbar = ({
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           {/* Brand Name */}
-          <a
-            href="#home"
-            onClick={(e) => handleScroll(e, "#home")}
+          <Link
+            href="/#home"
+            onClick={(e) => handleScroll(e, "/#home")}
             className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
             {name}
-          </a>
-
+          </Link>
           {/* Centered Routes */}
           <div className="flex items-center gap-6">
             {menu.map((item) => (
-              <a
+              <Link
                 key={item.title}
                 href={item.url}
                 onClick={(e) => handleScroll(e, item.url)}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </div>
-
           {/* Right Side: Theme Toggle */}
           <div className="flex items-center">
             <Button
@@ -110,14 +134,13 @@ const Navbar = ({
         {/* Mobile Menu */}
         <div className="flex items-center justify-between lg:hidden">
           {/* Brand Name */}
-          <a
-            href="#home"
-            onClick={(e) => handleScroll(e, "#home")}
+          <Link
+            href="/#home"
+            onClick={(e) => handleScroll(e, "/#home")}
             className="text-md font-bold tracking-tight"
           >
             {name}
-          </a>
-
+          </Link>
           <div className="flex items-center gap-2">
             {/* Theme Toggle for Mobile */}
             <Button
@@ -125,6 +148,7 @@ const Navbar = ({
               size="icon"
               onClick={toggleTheme}
               className="rounded-full"
+              aria-label="Toggle theme"
             >
               {theme === "dark" ? (
                 <Sun className="size-4" />
@@ -132,28 +156,34 @@ const Navbar = ({
                 <Moon className="size-4" />
               )}
             </Button>
-
             {/* Mobile Sheet Trigger */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Menu className="size-4" />
-                </Button>
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full"
+                    aria-label="Open menu"
+                  />
+                }
+              >
+                <Menu className="size-4" />
               </SheetTrigger>
               <SheetContent side="right" className="w-[250px] sm:w-[300px]">
                 <SheetHeader>
                   <SheetTitle className="text-left">{name}</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-5 mt-8">
+                <div className="flex flex-col gap-5 mt-8 px-4">
                   {menu.map((item) => (
-                    <a
+                    <Link
                       key={item.title}
                       href={item.url}
-                      onClick={(e) => handleScroll(e, item.url)}
+                      onClick={(e) => handleMobileScroll(e, item.url)}
                       className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </SheetContent>
