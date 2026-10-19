@@ -8,5 +8,5 @@ export const CONTACT = {
   facebookUrl: "https://www.facebook.com/your-page",
   githubUrl: "https://github.com/Shahil-Dev",
   linkedinUrl: "www.linkedin.com/in/yemtehan-shahil-89ba382b8",
-  cvUrl: "", //cv when created!
+  cvUrl: "/cv.pdf",
 };
