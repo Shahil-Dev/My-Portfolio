@@ -2,19 +2,27 @@
 
 import App from "@/components/logo";
 import SkillsShowcase from "@/components/TecnicalSkill";
-import SkillsMetrics from "@/components/TecnicalSkill";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
-export default function Skills() {
-  const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+const fadeInVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
+const logoLoopVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: 0.2, ease: "easeOut" },
+  },
+};
+
+export default function Skill() {
   return (
     <section
       id="skills"
@@ -45,21 +53,14 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.8, delay: 0.2, ease: "easeOut" },
-            },
-          }}
+          variants={logoLoopVariants}
         >
           <App />
         </motion.div>
       </div>
 
       <div>
-        <SkillsShowcase></SkillsShowcase>
+        <SkillsShowcase />
       </div>
     </section>
   );

@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Yemtehan Shahil ",
-  description: "",
+  description:
+    "Portfolio of Yemtehan Shahil, a full-stack web engineer building clean, high-performance web applications with Next.js, Node.js and PostgreSQL.",
 };
 
 export default function RootLayout({
@@ -30,9 +31,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-     <Navbar></Navbar>
-      {children}
-      <Footer></Footer>
+        <Navbar></Navbar>
+        {children}
+        <Footer></Footer>
       </body>
     </html>
   );
